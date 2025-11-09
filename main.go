@@ -36,7 +36,15 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf(`tagName=%s >> $GITHUB_OUTPUT`, release.TagName)
+
+	f, err := os.OpenFile(os.Getenv("GITHUB_OUTPUT"), os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+	if _, err := fmt.Fprintf(f, "tagName=%s\n", release.TagName); err != nil {
+		panic(err)
+	}
 }
 
 type GithubRelease struct {
