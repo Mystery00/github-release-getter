@@ -36,7 +36,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf(`::set-output name=tagName::%s`, release.TagName)
+	fmt.Printf(`tagName=%s >> $GITHUB_OUTPUT`, release.TagName)
 }
 
 type GithubRelease struct {

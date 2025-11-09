@@ -1,3 +1,3 @@
 module github-release-getter
 
-go 1.20
+go 1.25
